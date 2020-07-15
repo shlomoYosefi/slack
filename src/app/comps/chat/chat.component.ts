@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-chat',
@@ -6,10 +7,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
+  
+  mySpanMesseg
+  users=[]
+  myMessege =[]
 
-  constructor() { }
+  constructor(private srv:DataService) { }
 
   ngOnInit(): void {
+    this.mySpanMesseg = document.querySelector('#messeg')
+   this.users = this.srv.users
   }
+
+  getMessege(myName:string){
+    this.myMessege =[]
+    for (let i of this.srv.messeges){
+      // console.log(myName);
+      // console.log(i.name);
+      
+      if (i.name == myName){
+        this.myMessege.push(i.messeg)
+      }   
+    }
+    
+    console.log(this.myMessege);
+    
+}
 
 }

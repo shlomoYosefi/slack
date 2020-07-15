@@ -1,3 +1,6 @@
+<h1>סלאק</h1>
+
+
 <!-- 
 <div class="btn-group">
     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
@@ -11,3 +14,19 @@
       <a class="dropdown-item" href="#">Separated link</a>
     </div>
   </div> -->
+
+
+  <div class="all">
+
+    <div class="persons">
+      <input type="text">
+      <button *ngFor ='let i of users' (click)='getMessege(i)'>{{i}}</button>
+    </div>
+    
+    <div class="chat">
+      <h3 >my chats</h3>
+      <div id="messeg" *ngFor ='let i of myMessege'>{{i}}<br><hr></div>
+     
+    </div>
+    
+  </div>
