@@ -1,0 +1,14 @@
+.form-signin{
+    border: 5px solid rgb(105, 229, 240);
+    background: rgb(209, 238, 82);
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 50%;
+    height: 70%;
+}
+
+span{
+    color: red;
+}
