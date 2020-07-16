@@ -7,6 +7,8 @@ import { SignInComponent } from './comps/sign-in/sign-in.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChatComponent } from './comps/chat/chat.component';
 import { DropdownDirective } from './comps/chat/dropdown.directive';
+import { AutoGuard } from './auto.guard';
+import { CanActivService } from './can-activ.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import { DropdownDirective } from './comps/chat/dropdown.directive';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AutoGuard,CanActivService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
