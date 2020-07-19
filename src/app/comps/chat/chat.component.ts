@@ -19,13 +19,13 @@ export class ChatComponent implements OnInit {
    this.users = this.srv.users
   }
 
-  getMessege(myName:string){
+  getMessege(mygrup:string){
     this.myMessege =[]
     for (let i of this.srv.messeges){
       // console.log(myName);
       // console.log(i.name);
       
-      if (i.name == myName){
+      if (i.grup == mygrup){
         this.myMessege.push(i.messeg)
       }   
     }
