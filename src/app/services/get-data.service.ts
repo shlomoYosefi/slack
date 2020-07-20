@@ -25,9 +25,18 @@ export class GetDataService {
 
    getFilterDataMessege(name){
      console.log(this.postim.filter(val=>val.id ==name.id));
+     let a = this.postim[0].createdAt
+     console.log(a);
      
 
-     let a = this.postim.filter(val=>val.id ==name.id);
-     this.sendDataMessege.next(a)
+     let data = this.postim.filter(val=>val.id ==name.id);
+     this.sendDataMessege.next(data)
    } 
+   
+
+   getAllSend(){
+    return this.srvHttp.getHttp('https://5f14541b2710570016b37e30.mockapi.io/post')
+   }
+
+
 }

@@ -10,6 +10,7 @@ export class ChatComponent implements OnInit {
   
   
   myMessege 
+  
 
   constructor(private srv:GetDataService) { }
 
@@ -20,7 +21,7 @@ export class ChatComponent implements OnInit {
 
   allMesseg(){
     this.myMessege=[]
-    this.myMessege = this.srv.postim
+    this.srv.getAllSend().subscribe(data=>this.myMessege=data)
   }
 
 
