@@ -9,18 +9,24 @@ import { ChatComponent } from './comps/chat/chat.component';
 import { DropdownDirective } from './comps/chat/dropdown.directive';
 import { AutoGuard } from './auto.guard';
 import { CanActivService } from './can-activ.service';
+import { ListNamsComponent } from './comps/list-nams/list-nams.component';
+import { HomeComponent } from './comps/home/home.component';
+import { HttpClientModule }from '@angular/common/http' ;
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
     ChatComponent,
-    DropdownDirective
+    DropdownDirective,
+    ListNamsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [AutoGuard,CanActivService],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  Validators,  FormBuilder } from '@angular/forms';
-import { DataService } from 'src/app/services/data.service';
 import { CanActivService } from 'src/app/can-activ.service';
+import { GetDataService } from 'src/app/services/get-data.service';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class SignInComponent implements OnInit {
 
   
 
-  constructor(private fb:FormBuilder,private srv:DataService,private srvCanActivate:CanActivService) { }
+  constructor(private fb:FormBuilder,private srvData:GetDataService, private srvCanActivate:CanActivService) { }
 
 
   signInFromG = this.fb.group({
@@ -33,8 +33,8 @@ export class SignInComponent implements OnInit {
     
     let user = []
     user.push(this.signInFromG.controls.myEmail.value,this.signInFromG.controls.myPassword.value,rememberMe)
-    this.srv.users.push(user)
-    console.log(this.srv.users);
+    this.srvData.usersFromLog.push(user)
+    console.log(this.srvData.users);
   }
 
 

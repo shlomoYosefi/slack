@@ -1,0 +1,12 @@
+<div class="all">
+
+    <div class="persons">
+        <div class="input-group">
+
+            <input type="text" class="form-control" placeholder="חיפוש חופשי">
+        </div>
+        <div class="buttons">
+            <button *ngFor='let i of srv.users | async' (click)='getPersom(i)'>{{i.name}}</button>
+        </div>
+    </div>
+</div>

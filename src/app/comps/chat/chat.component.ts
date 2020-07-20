@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/services/data.service';
+import { GetDataService } from 'src/app/services/get-data.service';
 
 @Component({
   selector: 'app-chat',
@@ -8,30 +8,20 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class ChatComponent implements OnInit {
   
-  mySpanMesseg
-  users=[]
-  myMessege =[]
+  
+  myMessege 
 
-  constructor(private srv:DataService) { }
+  constructor(private srv:GetDataService) { }
 
-  ngOnInit(): void {
-    this.mySpanMesseg = document.querySelector('#messeg')
-   this.users = this.srv.users
+  ngOnInit(): void {  
+    this.srv.sendDataMessege.subscribe(data => this.myMessege = data)
+    
   }
 
-  getMessege(mygrup:string){
-    this.myMessege =[]
-    for (let i of this.srv.messeges){
-      // console.log(myName);
-      // console.log(i.name);
-      
-      if (i.grup == mygrup){
-        this.myMessege.push(i.messeg)
-      }   
-    }
-    
-    console.log(this.myMessege);
-    
-}
+  allMesseg(){
+    this.myMessege=[]
+    this.myMessege = this.srv.postim
+  }
+
 
 }

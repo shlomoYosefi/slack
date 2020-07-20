@@ -1,19 +1,15 @@
-.all{
-    display: flex;
-    width: 100%;
-}
 
-.persons{
-    width: 25vw;
-    height: 100vh;
-    background: red;
-}
+
+
 
 .chat{
+    margin-top: 20px;
+    position: absolute;
     width: 75vw;
     height: 100vh;
     background: rosybrown;
     text-align: center;
+    overflow: auto;
 }
 
 
@@ -25,16 +21,48 @@ h1{
 
 h3{
     text-decoration: underline;
+    font-size: xx-large;
+    /* margin-top: 20px; */
 }
 
-button{
-    margin-top: 5px;
-    width: 100%;
-    height: 30px;
-    background: slategray;
-}
+
 
 span{
     width: 100%;
     height: 40px;
 }
+
+.heder{
+    display: flex;
+    text-align: center;
+}
+
+.h3{
+    text-align: center;
+    position: relative;
+    margin-top: 40px;
+    
+}
+
+#messeg{
+    border: black solid 2px;
+}
+
+
+.buttons{
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    margin: 5px;
+}
+
+/* h6{
+    margin-right: 200px;
+} */
+
+
+
+
+

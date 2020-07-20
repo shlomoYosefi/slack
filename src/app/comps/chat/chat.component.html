@@ -1,32 +1,20 @@
-<h1>סלאק</h1>
+<div class="chat">
 
-
-<!-- 
-<div class="btn-group">
-    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-      Action <span class="caret"></span>
-    </button>
-    <div class="dropdown-menu" appDropdown>
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Separated link</a>
-    </div>
-  </div> -->
-
-
-  <div class="all">
-
-    <div class="persons">
-      <input type="text">
-      <button *ngFor ='let i of users' (click)='getMessege(i)'>{{i}}</button>
-    </div>
-    
-    <div class="chat">
-      <h3 >my chats</h3>
-      <div id="messeg"  *ngFor ='let i of myMessege'> {{i}}<br><hr></div>
-     
-    </div>
-    
+  <div class="buttons">
+    <button type="button" class="btn btn-outline-primary"(click)='allMesseg()'>כל ההודעות</button>
+    <button type="button" class="btn btn-outline-secondary">הכי ישן</button>
+    <button type="button" class="btn btn-outline-success">הכי חדש</button>
+   
   </div>
+
+
+  <div class="h3">
+    <h3>הצ'אטים שלי</h3>
+    <span>כל הצ'אטים</span>
+  </div><br><br><br><br><br><br>
+
+
+  <div id="messeg" *ngFor='let i of myMessege'> {{i.posts}}<br>
+  </div>
+
+</div>

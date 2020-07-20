@@ -1,0 +1,13 @@
+.all{
+    display: flex;
+    width: 90%;
+    margin: auto;
+}
+
+.listUsers{
+    margin: 1%;
+}
+
+.chat{
+    margin: 1%;
+}
