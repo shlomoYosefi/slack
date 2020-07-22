@@ -11,7 +11,11 @@ import { AutoGuard } from './auto.guard';
 import { CanActivService } from './can-activ.service';
 import { ListNamsComponent } from './comps/list-nams/list-nams.component';
 import { HomeComponent } from './comps/home/home.component';
-import { HttpClientModule }from '@angular/common/http' ;
+import { HttpClientModule }from '@angular/common/http';
+import { StoreModule } from '@ngrx/store' ;
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { reducer } from './services/stor/events'
+
 
 @NgModule({
   declarations: [
@@ -26,7 +30,16 @@ import { HttpClientModule }from '@angular/common/http' ;
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot( {events:reducer}, {
+
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      }
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    
   ],
   providers: [AutoGuard,CanActivService],
   bootstrap: [AppComponent]
