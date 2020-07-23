@@ -15,7 +15,9 @@ import { HttpClientModule }from '@angular/common/http';
 import { StoreModule } from '@ngrx/store' ;
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { reducer } from './services/stor/events';
-import { InputAMessegeComponent } from './comps/input-amessege/input-amessege.component'
+import { InputAMessegeComponent } from './comps/input-amessege/input-amessege.component';
+import { OpenComponent } from './comps/open/open.component';
+import { RegistrationComponent } from './comps/registration/registration.component'
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { InputAMessegeComponent } from './comps/input-amessege/input-amessege.co
     DropdownDirective,
     ListNamsComponent,
     HomeComponent,
-    InputAMessegeComponent
+    InputAMessegeComponent,
+    OpenComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
