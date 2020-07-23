@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { GetDataService } from 'src/app/services/get-data.service';
 
 @Component({
@@ -8,18 +8,26 @@ import { GetDataService } from 'src/app/services/get-data.service';
 })
 export class ListNamsComponent implements OnInit {
 
-
   users
+  // @Output() myInput: EventEmitter<string> = new EventEmitter<string>()  
 
   constructor(public srv:GetDataService) { }
 
   ngOnInit(): void {
+    this.users = this.srv.users
+    // this.myInput= document.querySelector('.myInput').addEventListener('input',this.sendInput(this))
+    
     // this.users = this.srv.users
     
   }
 
-  getPersom(person){
+  sendPersom(person){
     this.srv.getFilterDataMessege(person)  
   }
+
+  myinp(input){
+    // this.myInput.emit(input)
+  }
+
 
 }

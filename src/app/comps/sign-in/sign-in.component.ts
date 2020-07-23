@@ -41,10 +41,13 @@ export class SignInComponent implements OnInit {
   log(){
     if(this.signInFromG.valid){
       console.log("go to can activ");
-      
       this.srvCanActivate.logIn = true
     }
-    console.log('kafatz');
+    else{
+      console.log('kafatz');
+      alert("פרטים לא שלמים")
+    }
+    
     
   }
 

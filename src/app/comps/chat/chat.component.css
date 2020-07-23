@@ -4,9 +4,9 @@
 
 .chat{
     margin-top: 20px;
-    position: absolute;
+    /* position: absolute; */
     width: 75vw;
-    height: 100vh;
+    height: 85vh;
     background: rosybrown;
     text-align: center;
     overflow: auto;
@@ -39,7 +39,7 @@ span{
 
 .h3{
     text-align: center;
-    position: relative;
+    /* position: relative; */
     margin-top: 40px;
     
 }

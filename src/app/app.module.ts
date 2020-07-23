@@ -14,7 +14,8 @@ import { HomeComponent } from './comps/home/home.component';
 import { HttpClientModule }from '@angular/common/http';
 import { StoreModule } from '@ngrx/store' ;
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
-import { reducer } from './services/stor/events'
+import { reducer } from './services/stor/events';
+import { InputAMessegeComponent } from './comps/input-amessege/input-amessege.component'
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { reducer } from './services/stor/events'
     ChatComponent,
     DropdownDirective,
     ListNamsComponent,
-    HomeComponent
+    HomeComponent,
+    InputAMessegeComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import { reducer } from './services/stor/events'
       }
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    
     
   ],
   providers: [AutoGuard,CanActivService],

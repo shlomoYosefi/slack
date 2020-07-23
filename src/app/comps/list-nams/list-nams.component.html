@@ -3,10 +3,15 @@
     <div class="persons">
         <div class="input-group">
 
-            <input type="text" class="form-control" placeholder="חיפוש חופשי">
+            <input type="text" class="form-control" placeholder="חיפוש חופשי" (input)='myinp($event.target.value)'>
         </div>
+
+      
+
+
+
         <div class="buttons">
-            <button *ngFor='let i of srv.users | async' (click)='getPersom(i)'>{{i.name}}</button>
+            <button *ngFor='let i of users | async' (click)='sendPersom(i)'>{{i.name}}</button>
         </div>
     </div>
 </div>

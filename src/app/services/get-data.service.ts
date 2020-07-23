@@ -9,6 +9,8 @@ export class GetDataService {
 
   users:Observable<object>
   postim
+  myPerson:Subject<null> = new Subject()
+  aa
 
   usersFromLog =[]
 
@@ -19,18 +21,20 @@ export class GetDataService {
 
     
     this.users = this.srvHttp.getHttp('https://5f14541b2710570016b37e30.mockapi.io/users');
-    this.postim = this.srvHttp.getHttp('https://5f14541b2710570016b37e30.mockapi.io/post').subscribe(val=>this.postim=val)
+    
     
    }
 
    getFilterDataMessege(name){
-     console.log(this.postim.filter(val=>val.id ==name.id));
-     let a = this.postim[0].createdAt
-     console.log(a);
-     
+  
+     this.myPerson.next(name.name)
 
-     let data = this.postim.filter(val=>val.id ==name.id);
-     this.sendDataMessege.next(data)
+     this.srvHttp.getHttp(`https://5f14541b2710570016b37e30.mockapi.io/post/${name.id}`).subscribe(val => this.postim=val)
+    
+     this.sendDataMessege.next(this.postim)
+
+     
+     
    } 
    
 
