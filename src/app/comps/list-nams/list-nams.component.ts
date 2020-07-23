@@ -9,12 +9,16 @@ import { GetDataService } from 'src/app/services/get-data.service';
 export class ListNamsComponent implements OnInit {
 
   users
-  // @Output() myInput: EventEmitter<string> = new EventEmitter<string>()  
+  myusers
+  
+  
 
   constructor(public srv:GetDataService) { }
 
   ngOnInit(): void {
-    this.users = this.srv.users
+    this.srv.users.subscribe(val => this.users = val)
+    this.srv.users.subscribe(val => this.myusers = val)
+    
     // this.myInput= document.querySelector('.myInput').addEventListener('input',this.sendInput(this))
     
     // this.users = this.srv.users
@@ -26,7 +30,7 @@ export class ListNamsComponent implements OnInit {
   }
 
   myinp(input){
-    // this.myInput.emit(input)
+    this.users = this.myusers.filter((val) => val.name.toLowerCase().startsWith(input))
   }
 
 
