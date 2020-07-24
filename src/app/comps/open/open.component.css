@@ -1,47 +1,55 @@
 .all{
-    
-    
-    width: 100vw;
-    height: 100vh;
-    
-    /* display: flex; */
-    justify-content: space-evenly;
     text-align: center;
-
+    justify-content: center;
 }
 
-.enter{
+.allData{
+    
+    
+    width: 90vw;
+    height: 90vh;
+    
     display: flex;
-    width: 100%;
-    height: 100%;
-}
-
-.login{
-    background: cyan;
-    width: 40%;
-    height: 40%;
-    margin: auto;
+     justify-content: center;
     text-align: center;
 
 }
 
-.registration{
-    background: darkkhaki;
-    width: 40%;
-    height: 40%;
-    margin: auto;
-    text-align: center;
+.buttons{
+    display: flex;
+    justify-content: center;
+}
+
+.img{
+    width: 30%;
+margin-top: 6%;
 
 }
 
-h1{
-    margin-top: 25%;
+.explain{
+    width: 30%;
+margin-top: 6%;
+margin-right: 5%;
 }
 
-.slack{
+
+.header{
     font-size: 100px;
-    text-align: center;
-    color: darkmagenta;
-    text-decoration: underline;
+    margin-left: 45%;
+    color: rgb(129, 33, 97)
 }
+
+button{
+    border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    width: 30%;
+    cursor: pointer;
+    background: #0062cc;
+    color: #fff;
+    margin: auto;
+
+}
+
+
 
