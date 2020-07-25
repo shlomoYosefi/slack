@@ -9,9 +9,9 @@ import { RegistrationComponent } from './comps/registration/registration.compone
 
 const routes: Routes = [
   {path:"", component:OpenComponent},
-  {path:"home", component:HomeComponent , canActivate:[AutoGuard]},
-  {path:"logIn", component:SignInComponent , /*canActivate:[AutoGuard]*/},
-  {path:"registration", component:RegistrationComponent , /*canActivate:[AutoGuard]*/},
+  {path:"home", component:HomeComponent , /*canActivate:[AutoGuard]*/},
+  {path:"logIn", component:SignInComponent , },
+  {path:"registration", component:RegistrationComponent ,},
   
 ];
 

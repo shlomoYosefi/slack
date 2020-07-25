@@ -27,11 +27,18 @@ export class GetDataService {
 
    getFilterDataMessege(name){
   
+  
      this.myPerson.next(name.name)
 
      this.srvHttp.getHttp(`https://5f14541b2710570016b37e30.mockapi.io/post/${name.id}`).subscribe(val => this.postim=val)
-    
      this.sendDataMessege.next(this.postim)
+     
+     setTimeout(() => {
+      
+
+      // console.log(this.sendDataMessege);
+     }, 3000);
+     
 
      
      

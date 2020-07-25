@@ -1,3 +1,5 @@
+
+
 .all{
     display: flex;
     width: 90%;
@@ -6,13 +8,22 @@
 
 .listUsers{
     margin: 1%;
+    border: solid 2px blue;
+
     
 }
 .chatAndInput{
     margin: 1%;
 }
-/* 
+
 .chat{
-    border: black solid 2px;
-} */
+    border: solid 2px blue;
+}
+
+.input{
+    border: solid 2px blue;
+    margin-top: 1%;
+
+}
+
 

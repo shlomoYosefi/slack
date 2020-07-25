@@ -2,7 +2,7 @@
     width: 15vw;
     height: 90vh;
     overflow: auto;
-    background: red;
+    /* background: red; */
     text-align: center;
     margin-top: 20px
 }
@@ -11,10 +11,16 @@
 
 button{
     margin-top: 5px;
-    width: 100%;
+    width: 80%;
     height: 30px;
-    background: slategray;
-    color: whitesmoke;
+    border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    cursor: pointer;
+    background: #0062cc;
+    color: #fff;
+    
+    
 }
 
 .buttons{
@@ -24,6 +30,6 @@ button{
 
 input{
     width: 60%;
-     margin: 15px;
+   margin-left: 3%;
     text-align: center;
 } 

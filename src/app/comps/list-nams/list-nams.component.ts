@@ -19,13 +19,12 @@ export class ListNamsComponent implements OnInit {
     this.srv.users.subscribe(val => this.users = val)
     this.srv.users.subscribe(val => this.myusers = val)
     
-    // this.myInput= document.querySelector('.myInput').addEventListener('input',this.sendInput(this))
     
-    // this.users = this.srv.users
     
   }
 
   sendPersom(person){
+    
     this.srv.getFilterDataMessege(person)  
   }
 

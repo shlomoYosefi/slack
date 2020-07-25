@@ -7,7 +7,7 @@
     /* position: absolute; */
     width: 75vw;
     height: 85vh;
-    background: rosybrown;
+    /* background: rgb(226, 238, 192); */
     text-align: center;
     overflow: auto;
 }
@@ -45,7 +45,7 @@ span{
 }
 
 #messeg{
-    border: black solid 2px;
+    /* border: black solid 2px; */
 }
 
 

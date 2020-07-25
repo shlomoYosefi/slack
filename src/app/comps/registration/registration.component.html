@@ -1,5 +1,9 @@
 <form class="form-signin" [formGroup]="registrationFromG">
 
+    <div class=" header">
+        <h1 id="s">s</h1><h1 id="l">l</h1><h1 id="a">a</h1><h1 id="c">c</h1><h1 id="k">k</h1>
+    </div>
+
 <div class="container register-form">
     <div class="form">
 
@@ -11,28 +15,28 @@
 
                 <div class="rishum">
                     <div class="firstName">
-                        <input type="text" class="form-control" placeholder="first Name *" value=""/>
+                        <input #firstName type="text" class="form-control" placeholder="first Name *" value=""/>
                     </div><br>
 
                     <div class="lastName">
-                        <input type="text" class="form-control" placeholder="last name *" value=""/>
+                        <input #lastName type="text" class="form-control" placeholder="last name *" value=""/>
                     </div><br>
 
                     <div class="email">
-                        <input type="text" class="form-control" placeholder="email *" value=""/>
+                        <input #email type="text" class="form-control" placeholder="email *" value=""/>
                     </div><br>
                 
                     <div class="Password">
-                        <input type="text" class="form-control" placeholder="Your Password *" value=""/>
-                    </div>
+                        <input #Password type="text" class="form-control" placeholder="Your Password *" value=""/>
+                    </div><br>
 
-                    <div class="Confirm Password">
-                        <input type="text" class="form-control" placeholder="Confirm Password *" value=""/>
+                    <div class="ConfirmPassword">
+                        <input #ConfirmPassword type="text" class="form-control" placeholder="Confirm Password *" value=""/>
                     </div><br>
 
                 </div>
             </div>
-            <button type="button" class="btnSubmit">Submit</button>
+            <button type="button" class="btnSubmit" (click)='guard(firstName.value,lastName.value,email.value,Password.value,ConfirmPassword.value)' routerLink='/home'>Submit</button>
         
     </div>
 </div>

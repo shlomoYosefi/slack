@@ -34,8 +34,8 @@ margin-right: 5%;
 
 
 .header{
-    font-size: 100px;
-    margin-left: 45%;
+    display: flex;
+    margin-left: 43%;
     color: rgb(129, 33, 97)
 }
 
@@ -49,6 +49,31 @@ button{
     color: #fff;
     margin: auto;
 
+}
+
+#s{
+    font-size: 100px;
+    color: rgba(134, 2, 95, 0.979);
+}
+
+#l{
+    font-size: 100px;
+    color: rgb(247, 206, 23);
+}
+
+#a{
+    font-size: 100px;
+    color: rgb(19, 134, 4);
+}
+
+#c{
+    font-size: 100px;
+    color: rgb(11, 163, 223);
+}
+
+#k{
+    font-size: 100px;
+    color: rgba(134, 2, 95, 0.979);
 }
 
 

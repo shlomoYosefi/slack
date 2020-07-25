@@ -38,7 +38,7 @@ export class SignInComponent implements OnInit {
   }
 
 
-  log(){
+  guard(){
     if(this.signInFromG.valid){
       console.log("go to can activ");
       this.srvCanActivate.logIn = true
@@ -47,7 +47,7 @@ export class SignInComponent implements OnInit {
       console.log('kafatz');
       alert("פרטים לא שלמים")
     }
-    
+
     
   }
 

@@ -14,8 +14,8 @@
   </div><br><br><br><br><br><br>
 
 
-  <div id="messeg" *ngIf ='myMessege'>
-    <span>{{myMessege.posts}}</span><br>
+  <div id="messeg" *ngFor ='let i of myMessege'>
+    <span>{{i.posts}}</span><hr><br>
   </div>
 
 </div>

@@ -13,8 +13,7 @@
 
 .form{
     border: 5px solid rgb(105, 229, 240);
-    /* background: rgb(209, 238, 82); */
-    margin-top: 10%;
+    margin-top: 3%;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -42,4 +41,35 @@ input{
 
 p{
     font-size: larger;
+}
+
+.header{
+    display: flex;
+    margin-left: 43%;
+    color: rgb(129, 33, 97)
+}
+
+#s{
+    font-size: 100px;
+    color: rgba(134, 2, 95, 0.979);
+}
+
+#l{
+    font-size: 100px;
+    color: rgb(247, 206, 23);
+}
+
+#a{
+    font-size: 100px;
+    color: rgb(19, 134, 4);
+}
+
+#c{
+    font-size: 100px;
+    color: rgb(11, 163, 223);
+}
+
+#k{
+    font-size: 100px;
+    color: rgba(134, 2, 95, 0.979);
 }
