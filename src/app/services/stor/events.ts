@@ -9,11 +9,18 @@ export interface persone {
   password:string
 }
 
+export interface persones {
+  persons:persone[]
+}
+
+
 
 export const addPerson = createAction(
   '[Add Person] Event',
   props<persone>()
 );
+
+
 
 export const removePerson = createAction(
   '[Remove Person] Event',
@@ -45,10 +52,9 @@ export const stateArrayPerson: IStatePerson = {
 const eventsReducer = createReducer(
   stateArrayPerson,
   on(addPerson, (state: IStatePerson, newPerson: persone):IStatePerson => {
-    
-    
     return {...state,personse:[...state.personse,newPerson]}
   }),
+
 
 
   on(removePerson, (state ,id:{id:number}) => {

@@ -29,7 +29,7 @@ export class ListNamsComponent implements OnInit {
   }
 
   myinp(input){
-    this.users = this.myusers.filter((val) => val.name.toLowerCase().startsWith(input))
+    this.users = this.myusers.filter((val) => val.firstName.toLowerCase().startsWith(input))
   }
 
 
