@@ -19,6 +19,9 @@ import { InputAMessegeComponent } from './comps/input-amessege/input-amessege.co
 import { OpenComponent } from './comps/open/open.component';
 import { RegistrationComponent } from './comps/registration/registration.component'
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -37,12 +40,15 @@ import { RegistrationComponent } from './comps/registration/registration.compone
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+
     StoreModule.forRoot( {users:reducer}, {
 
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,
       }
+
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
     
