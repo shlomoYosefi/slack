@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { GetDataService } from 'src/app/services/get-data.service';
+import { Store, select } from '@ngrx/store';
+import { selectUserNameFeature, usersFeature } from 'src/app/services/stor/selectorim';
 
 @Component({
   selector: 'app-list-nams',
@@ -10,14 +12,15 @@ export class ListNamsComponent implements OnInit {
 
   users
   myusers
-  
+  aa
   
 
-  constructor(public srv:GetDataService) { }
+  constructor(public srv:GetDataService,private stor:Store) { }
 
   ngOnInit(): void {
+    
     this.srv.users.subscribe(val => this.users = val)
-    this.srv.users.subscribe(val => this.myusers = val)
+    // this.srv.users.subscribe(val => this.myusers = val)
     
     
     
@@ -30,6 +33,13 @@ export class ListNamsComponent implements OnInit {
 
   myinp(input){
     this.users = this.myusers.filter((val) => val.firstName.toLowerCase().startsWith(input))
+  }
+
+  log(){
+  //   this.stor.pipe(select(selectUserNameFeature)).subscribe(val =>{this.aa =val , console.log(val);
+  //   }) 
+    
+    
   }
 
 

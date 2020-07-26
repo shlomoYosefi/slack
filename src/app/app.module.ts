@@ -37,7 +37,7 @@ import { RegistrationComponent } from './comps/registration/registration.compone
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot( {events:reducer}, {
+    StoreModule.forRoot( {users:reducer}, {
 
       runtimeChecks: {
         strictStateImmutability: true,
