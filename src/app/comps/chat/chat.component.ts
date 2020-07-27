@@ -23,7 +23,7 @@ export class ChatComponent implements OnInit {
   allMesseg(){
     console.log(this.myMessege);
     
-    this.srv.getAllSend().subscribe(data=>this.myMessege=data)
+    this.srv.getAllPosts().subscribe(data=>this.myMessege=data)
   }
 
 

@@ -10,7 +10,7 @@ export class GetHttpService {
   constructor(private http:HttpClient) { }
 
 
-  getHttp(url):Observable<any>{
+  getHttpPersons(url):Observable<any>{
    return this.http.get(url)
   }
 

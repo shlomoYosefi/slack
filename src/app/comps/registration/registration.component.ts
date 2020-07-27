@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CanActivService } from 'src/app/can-activ.service';
 import { Store } from '@ngrx/store';
 import { addPerson } from 'src/app/services/stor/events';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { GetDataService } from 'src/app/services/get-data.service';
+
 
 @Component({
   selector: 'app-registration',
@@ -12,7 +14,7 @@ import { addPerson } from 'src/app/services/stor/events';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private fb:FormBuilder ,private srvCanActivate:CanActivService , private stor:Store<any>) { }
+  constructor(private fb:FormBuilder ,private srvCanActivate:CanActivService , private stor:Store<any>,private fireStore:AngularFirestore ,private srvData:GetDataService ) { }
 
 
   registrationFromG = this.fb.group({
@@ -44,9 +46,8 @@ export class RegistrationComponent implements OnInit {
     }
     console.log(person);
     
-console.log(this.registrationFromG.controls.firstName.errors);
-
-    this.stor.dispatch(addPerson(person));
+    this.srvData.addPerson(person)
+    // this.stor.dispatch(addPerson(person));
 
     
     
