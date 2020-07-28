@@ -6,12 +6,12 @@
             <input type="text" class="form-control" placeholder="חיפוש חופשי" (input)='myinp($event.target.value)'>
         </div>
 
-      <button (click)='log()'>llllll</button>
+      <!-- <button (click)='log()'>llllll</button> -->
 
 
 
         <div class="buttons">
-            <button *ngFor='let i of users' (click)='sendPersom(i)'>{{i.firstName}} {{i.lastName}}</button>
+            <button *ngFor='let i of myusers ' (click)='sendPersom(i)'>{{i.firstName}} {{i.lastName}} </button>
         </div>
     </div>
 </div>

@@ -46,8 +46,8 @@ export class GetDataService {
 
 
   getDataMokeApi() {
-    this.users = this.srvHttp.getHttpPersons('https://5f14541b2710570016b37e30.mockapi.io/users')
-    this.users.subscribe(per => {this.stor.dispatch(addPerson(per))})
+    // this.users = this.srvHttp.getHttpPersons('https://5f14541b2710570016b37e30.mockapi.io/users')
+    // this.users.subscribe(per => {this.stor.dispatch(addPerson(per))})
     this.myUsers.subscribe(per=>this.stor.dispatch(addPerson(per)))
   }
 
