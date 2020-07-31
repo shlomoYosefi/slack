@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { addPerson } from 'src/app/services/stor/events';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { GetDataService } from 'src/app/services/get-data.service';
+import { ChatComponent } from '../chat/chat.component';
+import { of } from 'rxjs';
 
 
 @Component({
@@ -13,6 +15,8 @@ import { GetDataService } from 'src/app/services/get-data.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+
+  log 
 
   constructor(private fb:FormBuilder ,private srvCanActivate:CanActivService , private stor:Store<any>,private fireStore:AngularFirestore ,private srvData:GetDataService ) { }
 
@@ -51,11 +55,14 @@ export class RegistrationComponent implements OnInit {
         email,
         password
       }
-      this.srvData.editPersonUser(person)
-      console.log("vvvvvvv");
-      // this.srvData.addPerson(person)
+      
+      setTimeout(()=>{
+        this.srvData.personUser.next(person)
+      },3000)
+      
+      this.srvData.addPerson(person)
 
-
+      
       console.log("go to can activ");
       this.srvCanActivate.logIn = true
       

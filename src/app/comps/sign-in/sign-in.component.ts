@@ -47,7 +47,9 @@ export class SignInComponent implements OnInit {
     this.srvData.myUsers.subscribe(val => {
       for (let i of val) {
         // console.log(val);
-        if (i.email == email && i.password == password) {            
+        if (i.email == email && i.password == password) {
+          console.log(i);
+                      
             this.srvData.personUser.next(i)
           this.srvCanActivate.logIn = true
           return

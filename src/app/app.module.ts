@@ -33,7 +33,8 @@ import { environment } from 'src/environments/environment';
     HomeComponent,
     InputAMessegeComponent,
     OpenComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -55,6 +56,6 @@ import { environment } from 'src/environments/environment';
     
   ],
   providers: [AutoGuard,CanActivService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent ]
 })
 export class AppModule { }

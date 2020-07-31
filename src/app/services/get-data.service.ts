@@ -20,7 +20,7 @@ export class GetDataService {
 
   // users: Observable<any>
   clickPerson: Subject<persone> = new Subject()
-  personUser:Subject<persone> = new Subject()
+  personUser:Subject<any> = new Subject()
 
   usersFromLog = []
 
