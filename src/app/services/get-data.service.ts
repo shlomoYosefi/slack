@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { GetHttpService } from './get-http.service';
 import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { addPerson, persone } from './stor/events';
-import { tap } from 'rxjs/operators'
+import { addPerson, persone, editPerson, IStatePerson } from './stor/events';
+import { tap, filter } from 'rxjs/operators'
 import { AngularFirestore } from '@angular/fire/firestore';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Post } from './stor/postim';
 
 
 @Injectable({
@@ -13,9 +15,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class GetDataService {
 
   myUsers: Observable<any>
+  myAllPosts:Observable<any>
+  myPost:Subject<any> = new Subject()
 
-  users: Observable<persone>
-  myPerson: Subject<string> = new Subject()
+  // users: Observable<any>
+  clickPerson: Subject<persone> = new Subject()
+  personUser:Subject<persone> = new Subject()
 
   usersFromLog = []
 
@@ -24,18 +29,47 @@ export class GetDataService {
 
   constructor(private srvHttp: GetHttpService, private stor: Store<any>, private fireStore: AngularFirestore) {
 
-    this.getPersonDb()
+    // this.getPersonDb()
+
+    this.myUsers = this.fireStore.collection("person").valueChanges()
+    this.myAllPosts = this.fireStore.collection("posts").valueChanges()
+    this.myUsers.subscribe(val=>{console.log(val)/*,this.stor.dispatch(editPerson({persons:val}))*/})
+    this.myAllPosts.subscribe(val=>{console.log(val)})
+
+    // this.myUsers.subscribe(per=>this.stor.dispatch(editPerson(per)))
+    
+
     this.getDataMokeApi()
   }
 
 
 
   getFilterDataMessege(name) {
+    let send=[] 
+    let myUser
 
-    this.myPerson.next(name.name)
-    this.srvHttp.getHttpPersons(`https://5f14541b2710570016b37e30.mockapi.io/post/${name.id}`).subscribe(val => {
-      this.sendDataMessege.next(val)
+    
+    this.personUser.subscribe(val=>{myUser=val.id,console.log(val.id)})
+    this.clickPerson.next(name)
+    
+    this.myAllPosts.subscribe(val=>{
+      for (let i of val){
+        
+        if(i.address== name.id ){
+          console.log(name.id)
+          console.log(i.address)
+          console.log(myUser);
+          
+        };
+        
+      }
+      
     })
+    
+    
+    // this.srvHttp.getHttpPersons(`https://5f14541b2710570016b37e30.mockapi.io/post/${name.id}`).subscribe(val => {
+    //   this.sendDataMessege.next(val)
+    // })
 
   }
 
@@ -48,22 +82,31 @@ export class GetDataService {
   getDataMokeApi() {
     // this.users = this.srvHttp.getHttpPersons('https://5f14541b2710570016b37e30.mockapi.io/users')
     // this.users.subscribe(per => {this.stor.dispatch(addPerson(per))})
-    this.myUsers.subscribe(per=>this.stor.dispatch(addPerson(per)))
+    
   }
 
 
 
   addPerson(person) {
+    // console.log((person));
+    
+
     this.fireStore.collection("person").add(person)
+    // this.stor.dispatch(editPerson(this.myUsers));
     // this.stor.dispatch(addPerson(person));
+
   }
 
 
-  sendPost() {
+  sendPost(post) {
+    this.fireStore.collection("posts").add(post)
   }
 
-  getPersonDb(){
-    this.myUsers = this.fireStore.collection("person").valueChanges()
+
+  editPersonUser(per){
+    console.log(per);
+    
+    this.personUser.next(per)
   }
 
   

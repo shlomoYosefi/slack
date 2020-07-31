@@ -29,7 +29,7 @@ export const removePerson = createAction(
 
 export const editPerson = createAction(
   '[edit Person] Event',
-  props<{persone}>()
+  props<{persons:persone[]}>()
 );
 
 
@@ -64,6 +64,20 @@ const eventsReducer = createReducer(
     return { ...state,delPerson} }),
 
 );
+
+
+
+on(editPerson, (state: IStatePerson ,newPersons:{persons:persone[]}) => {
+  console.log(newPersons);
+  
+  return { ...state,...newPersons}},
+  );
+
+
+
+
+
+
 
 export function reducer(state: IStatePerson | undefined, action: Action) {
   return eventsReducer(state, action);

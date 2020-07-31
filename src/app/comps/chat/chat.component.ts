@@ -11,17 +11,17 @@ export class ChatComponent implements OnInit {
   
   
   myMessege 
-  
+  hello
 
-  constructor(private srv:GetDataService) { }
+  constructor(public srv:GetDataService) { }
 
   ngOnInit(): void {  
     this.srv.sendDataMessege.subscribe(val=>this.myMessege=[val])
-    
+    this.srv.personUser.subscribe(val=> this.hello = `שלום ${val.firstName} ${val.lastName} `)
   }
 
   allMesseg(){
-    console.log(this.myMessege);
+    // console.log(this.hello);
     
     this.srv.getAllPosts().subscribe(data=>this.myMessege=data)
   }

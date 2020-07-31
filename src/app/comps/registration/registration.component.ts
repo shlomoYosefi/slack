@@ -36,22 +36,26 @@ export class RegistrationComponent implements OnInit {
       return
     }
 
-    let id = Math.floor(Math.random() * 10000);
-    let person ={
-      id,
-      firstName,
-      lastName,
-      email,
-      password
-    }
-    console.log(person);
     
-    this.srvData.addPerson(person)
     // this.stor.dispatch(addPerson(person));
 
     
     
     if(this.registrationFromG.valid){
+
+      let id = Math.floor(Math.random() * 10000);
+      let person ={
+        id,
+        firstName,
+        lastName,
+        email,
+        password
+      }
+      this.srvData.editPersonUser(person)
+      console.log("vvvvvvv");
+      // this.srvData.addPerson(person)
+
+
       console.log("go to can activ");
       this.srvCanActivate.logIn = true
       

@@ -21,7 +21,7 @@
           </div><br>
 
           <div class="form-group">
-            <input type="text" #inputPassword formControlName='myPassword' class="form-control"
+            <input type="password" #inputPassword formControlName='myPassword' class="form-control"
               placeholder="Your Password *" value="" /><br>
             <!-- <div *ngIf='(signInFromG.get("myPassword").invalid)'><span password>שדה זו חובה</span></div> -->
           </div><br>
@@ -32,7 +32,7 @@
 
         </div>
       </div><br><br><br><br><br>
-      <button type="submit" class="btnSubmit" (click)='guard()' routerLink='/home'>Submit</button><br>
+      <button type="submit" class="btnSubmit" (click)='guard(inputEmail.value,inputPassword.value,rememberMe.value)' routerLink='/home'>Submit</button><br>
       <!-- <p class="mt-5 mb-3 text-muted">&copy; 2020</p> -->
 
     </div>

@@ -7,7 +7,7 @@ export interface Post {
   id: number;
   text: string;
   date: string;
-//   addressee:persone
+  addressee:number
 }
 
 

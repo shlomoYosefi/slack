@@ -11,25 +11,22 @@ import { selectUserNameFeature, usersFeature } from 'src/app/services/stor/selec
 export class ListNamsComponent implements OnInit {
 
   users
-  myusers = []
-  aa
+  myusers
+  
 
 
   constructor(public srv: GetDataService, private stor: Store) { }
 
   ngOnInit(): void {
 
-    // this.srv.users.subscribe(val => this.users = val)
-    this.stor.pipe(select(usersFeature)).subscribe(val => { this.aa = val, this.log(this.aa) })
-    // this.srv.users.subscribe(val => this.myusers = val)
-
-
-
+    this.srv.myUsers.subscribe(val => {this.users = val, this.myusers=val})
+    
+    
   }
 
   sendPersom(person) {
-
     this.srv.getFilterDataMessege(person)
+    this.srv.personUser.subscribe(val=>console.log(val))
   }
 
   myinp(input) {
@@ -45,14 +42,9 @@ export class ListNamsComponent implements OnInit {
     for (let i in xx[0]) {
 
       xx.forEach(element => {
-        if (element[i].firstName != null ) {
           this.myusers.push(element[i])
-        }
       });
     }
-    console.log(this.myusers);
-
-
 
   }
 
