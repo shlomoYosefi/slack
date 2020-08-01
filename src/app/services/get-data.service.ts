@@ -16,15 +16,16 @@ export class GetDataService {
 
   myUsers: Observable<any>
   myAllPosts:Observable<any>
-  myPost:Subject<any> = new Subject()
 
-  // users: Observable<any>
+  myPost:Subject<any> = new Subject()
   clickPerson: Subject<persone> = new Subject()
   personUser:Subject<any> = new Subject()
+  sendDataMessege: Subject<persone> = new Subject()
+
+  
 
   usersFromLog = []
 
-  sendDataMessege: Subject<persone> = new Subject()
 
 
   constructor(private srvHttp: GetHttpService, private stor: Store<any>, private fireStore: AngularFirestore) {
@@ -33,9 +34,9 @@ export class GetDataService {
 
     this.myUsers = this.fireStore.collection("person").valueChanges()
     this.myAllPosts = this.fireStore.collection("posts").valueChanges()
+
     this.myUsers.subscribe(val=>{console.log(val)/*,this.stor.dispatch(editPerson({persons:val}))*/})
     this.myAllPosts.subscribe(val=>{console.log(val)})
-
     // this.myUsers.subscribe(per=>this.stor.dispatch(editPerson(per)))
     
 
@@ -45,11 +46,17 @@ export class GetDataService {
 
 
   getFilterDataMessege(name) {
+    
     let send=[] 
     let myUser
-
+    this.personUser.subscribe(vv=>{myUser=vv,console.log(vv)})
+    setTimeout(()=>{
+      console.log("klklklkl");
+      console.log(name);
+      console.log(myUser);
+    },3000)
     
-    this.personUser.subscribe(val=>{myUser=val.id,console.log(val.id)})
+    
     this.clickPerson.next(name)
     
     this.myAllPosts.subscribe(val=>{
@@ -92,6 +99,7 @@ export class GetDataService {
     
 
     this.fireStore.collection("person").add(person)
+    
     // this.stor.dispatch(editPerson(this.myUsers));
     // this.stor.dispatch(addPerson(person));
 

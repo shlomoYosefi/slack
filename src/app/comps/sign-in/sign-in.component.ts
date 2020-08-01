@@ -3,6 +3,8 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { CanActivService } from 'src/app/can-activ.service';
 import { GetDataService } from 'src/app/services/get-data.service';
 import { persone } from 'src/app/services/stor/events';
+import { areAllEquivalent } from '@angular/compiler/src/output/output_ast';
+import { arraysAreNotAllowedMsg } from '@ngrx/store/src/models';
 
 
 @Component({
@@ -51,6 +53,8 @@ export class SignInComponent implements OnInit {
           console.log(i);
                       
             this.srvData.personUser.next(i)
+
+          
           this.srvCanActivate.logIn = true
           return
         }

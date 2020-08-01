@@ -18,7 +18,7 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {  
     this.srv.sendDataMessege.subscribe(val=>this.myMessege=[val])
-    this.srv.personUser.subscribe(val=> this.hello = `שלום ${val.firstName} ${val.lastName} `)
+    this.srv.personUser.subscribe(val=> {this.hello = `שלום ${val.firstName} ${val.lastName} `})
     this.srv.personUser.subscribe(val=> this.aa = val)
 
   }

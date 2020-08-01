@@ -26,7 +26,6 @@ export class ListNamsComponent implements OnInit {
 
   sendPersom(person) {
     this.srv.getFilterDataMessege(person)
-    this.srv.personUser.subscribe(val=>console.log(val))
   }
 
   myinp(input) {
