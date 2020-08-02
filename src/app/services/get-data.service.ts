@@ -34,7 +34,6 @@ export class GetDataService {
 
   constructor(private srvHttp: GetHttpService, private stor: Store<any>, private fireStore: AngularFirestore) {
 
-    // this.getPersonDb()
 
     this.myUsers = this.fireStore.collection("person").valueChanges()
     this.myAllPosts = this.fireStore.collection("posts").valueChanges()
@@ -45,7 +44,6 @@ export class GetDataService {
     // this.myUsers.subscribe(per=>this.stor.dispatch(editPerson(per)))
     
 
-    this.getDataMokeApi()
   }
 
 
@@ -96,15 +94,9 @@ export class GetDataService {
 
 
   getAllPosts() {
-    
+    return this.myAllPosts
   }
 
-
-  getDataMokeApi() {
-    // this.users = this.srvHttp.getHttpPersons('https://5f14541b2710570016b37e30.mockapi.io/users')
-    // this.users.subscribe(per => {this.stor.dispatch(addPerson(per))})
-    
-  }
 
 
 

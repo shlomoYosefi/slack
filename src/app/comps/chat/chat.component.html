@@ -10,12 +10,11 @@
 
   <div class="h3">
     <h3>הצ'אטים שלי</h3>
-    <span>כל הצ'אטים</span>
   </div><br><br><br><br><br><br>
 
 
   <div id="messeg" *ngFor ='let i of myMessege'>
+    <span style='text-decoration: underline;' dir="rtl">{{i.address}}</span>
     <span>{{i.text}}</span><hr><br>
   </div>
-
 </div>

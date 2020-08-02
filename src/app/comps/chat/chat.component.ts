@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { GetDataService } from 'src/app/services/get-data.service';
 import { Subject, Observable, observable } from 'rxjs';
+import { Post } from 'src/app/services/stor/postim';
 
 @Component({
   selector: 'app-chat',
@@ -37,7 +38,7 @@ export class ChatComponent implements OnInit,OnDestroy {
   }
 
   allMesseg(){
-    // this.srv.getAllPosts().subscribe(data=>this.myMessege=data)
+    this.srv.getAllPosts().subscribe(data=>this.myMessege=data)
   }
 
 
