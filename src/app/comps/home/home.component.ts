@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GetDataService } from 'src/app/services/get-data.service';
-import { Subject } from 'rxjs';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
+import { CanActivService } from 'src/app/can-activ.service';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,10 @@ import { Subject } from 'rxjs';
 })
 export class HomeComponent implements OnInit ,OnDestroy{
 
-  constructor(private srv:GetDataService) { }
+  constructor(private srv:GetDataService ,private gurd:CanActivService) { }
   ngOnDestroy(): void {
-    this.srv.personUser=new Subject()
+    this.gurd.logIn = false
+    this.srv.personU =new BehaviorSubject(null)
   }
 
   ngOnInit(): void {

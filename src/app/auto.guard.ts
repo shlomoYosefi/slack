@@ -20,8 +20,6 @@ export class AutoGuard implements CanActivate {
     return true;}
     else{
       console.log(false);
-      
-      this.router.navigate
       return false
     }
   }

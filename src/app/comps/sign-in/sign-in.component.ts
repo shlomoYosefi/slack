@@ -5,6 +5,8 @@ import { GetDataService } from 'src/app/services/get-data.service';
 import { persone } from 'src/app/services/stor/events';
 import { areAllEquivalent } from '@angular/compiler/src/output/output_ast';
 import { arraysAreNotAllowedMsg } from '@ngrx/store/src/models';
+import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +20,7 @@ export class SignInComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private srvData: GetDataService, private srvCanActivate: CanActivService) { }
+  constructor(private fb: FormBuilder, private srvData: GetDataService, private srvCanActivate: CanActivService ,private router:Router) { }
 
 
   signInFromG = this.fb.group({
@@ -48,26 +50,27 @@ export class SignInComponent implements OnInit {
 
     this.srvData.myUsers.subscribe(val => {
       for (let i of val) {
-        // console.log(val);
         if (i.email == email && i.password == password) {
-          console.log(i);
-                      
-            this.srvData.personUser.next(i)
-
           
+          console.log(true);
+
+          this.srvData.personU.next(i)
+
+          // this.srvData.personUser = of(i)
+          this.router.navigate(['/home'])
           this.srvCanActivate.logIn = true
           return
         }
       }
-      if(this.signInFromG.valid){
+      if (this.signInFromG.valid) {
         alert("פרטים לא נכונים")
       }
-      else{
+      else {
         alert("פרטים לא מלאים")
 
       }
-      
-      
+
+
 
 
 

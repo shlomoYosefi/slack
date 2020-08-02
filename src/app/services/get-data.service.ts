@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GetHttpService } from './get-http.service';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, observable, of, BehaviorSubject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { addPerson, persone, editPerson, IStatePerson } from './stor/events';
 import { tap, filter } from 'rxjs/operators'
@@ -16,11 +16,15 @@ export class GetDataService {
 
   myUsers: Observable<any>
   myAllPosts:Observable<any>
+  myPost:Observable<any> = new Observable()
 
-  myPost:Subject<any> = new Subject()
   clickPerson: Subject<persone> = new Subject()
-  personUser:Subject<any> = new Subject()
+  // personUser:Subject<any> = new Subject()
   sendDataMessege: Subject<persone> = new Subject()
+  arrayPost = new BehaviorSubject<Post[]>(null)
+
+  // personUser:Observable<persone> = new Observable<persone>()
+  personU = new BehaviorSubject(null)
 
   
 
@@ -36,7 +40,8 @@ export class GetDataService {
     this.myAllPosts = this.fireStore.collection("posts").valueChanges()
 
     this.myUsers.subscribe(val=>{console.log(val)/*,this.stor.dispatch(editPerson({persons:val}))*/})
-    this.myAllPosts.subscribe(val=>{console.log(val)})
+
+    
     // this.myUsers.subscribe(per=>this.stor.dispatch(editPerson(per)))
     
 
@@ -49,28 +54,37 @@ export class GetDataService {
     
     let send=[] 
     let myUser
-    this.personUser.subscribe(vv=>{myUser=vv,console.log(vv)})
-    setTimeout(()=>{
-      console.log("klklklkl");
-      console.log(name);
-      console.log(myUser);
-    },3000)
+    this.personU.subscribe(val=>{myUser = val})
+    
+    
+    // this.personUser.subscribe(vv=>{
+    // setTimeout(()=>{
+    //   console.log("klklklkl");
+    //   console.log(name);
+    //   console.log(myUser);
+    // },3000)})
     
     
     this.clickPerson.next(name)
     
     this.myAllPosts.subscribe(val=>{
+
+      let itsPost=[]
+
       for (let i of val){
+        // console.log(myUser.id),
+        // console.log(name.id) 
+        // console.log(i.address);
+        // console.log(i.addressee);
         
-        if(i.address== name.id ){
-          console.log(name.id)
-          console.log(i.address)
-          console.log(myUser);
-          
+               
+        if((i.address== name.id && i.addressee == myUser.id ) || (i.address== myUser.id && i.addressee ==name.id  )){
+          itsPost.push(i)
         };
         
       }
-      
+      this.arrayPost.next(itsPost)
+      this.myPost= of(itsPost)
     })
     
     
@@ -82,7 +96,7 @@ export class GetDataService {
 
 
   getAllPosts() {
-    return this.srvHttp.getHttpPersons('https://5f14541b2710570016b37e30.mockapi.io/post')
+    
   }
 
 
@@ -96,8 +110,8 @@ export class GetDataService {
 
   addPerson(person) {
     // console.log((person));
+    console.log(person);
     
-
     this.fireStore.collection("person").add(person)
     
     // this.stor.dispatch(editPerson(this.myUsers));
@@ -114,7 +128,7 @@ export class GetDataService {
   editPersonUser(per){
     console.log(per);
     
-    this.personUser.next(per)
+    // this.personUser.next(per)
   }
 
   

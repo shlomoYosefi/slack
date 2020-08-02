@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { GetDataService } from 'src/app/services/get-data.service';
 import { Subject, Observable, observable } from 'rxjs';
 
@@ -7,26 +7,37 @@ import { Subject, Observable, observable } from 'rxjs';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit,OnDestroy {
   
   
   myMessege 
   hello
-  aa
+  
 
   constructor(public srv:GetDataService) { }
+  ngOnDestroy(): void {
+    this.myMessege = ['']
+  }
+  
 
-  ngOnInit(): void {  
-    this.srv.sendDataMessege.subscribe(val=>this.myMessege=[val])
-    this.srv.personUser.subscribe(val=> {this.hello = `שלום ${val.firstName} ${val.lastName} `})
-    this.srv.personUser.subscribe(val=> this.aa = val)
+  ngOnInit(): void {
+    console.log("dkdskfdsfsd");
 
+    this.srv.arrayPost.subscribe(val=>{
+      if(val == []){
+        this.myMessege=["אין הודעות"]
+      }
+      else{
+      this.myMessege=val}})   
+    // this.srv.sendDataMessege.subscribe(val=>this.myMessege=[val])
+    
+    this.srv.personU.subscribe(val=> {
+      if(val !=null){
+      this.hello = `שלום ${val.firstName} ${val.lastName} `}})
   }
 
   allMesseg(){
-    console.log(this.aa);
-    
-    this.srv.getAllPosts().subscribe(data=>this.myMessege=data)
+    // this.srv.getAllPosts().subscribe(data=>this.myMessege=data)
   }
 
 

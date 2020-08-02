@@ -15,28 +15,28 @@
 
                 <div class="rishum">
                     <div class="firstName">
-                        <input #firstName type="text" class="form-control" placeholder="first Name *" value=""/>
+                        <input #firstName type="text" formControlName='firstName' class="form-control" placeholder="first Name *" value=""/>
                     </div><br>
 
                     <div class="lastName">
-                        <input #lastName type="text" class="form-control" placeholder="last name *" value=""/>
+                        <input #lastName type="text" formControlName='lastName' class="form-control" placeholder="last name *" value=""/>
                     </div><br>
 
                     <div class="email">
-                        <input #email type="text" class="form-control" placeholder="email *" value=""/>
+                        <input #email type="text" formControlName='email' class="form-control" placeholder="email *" value=""/>
                     </div><br>
                 
                     <div class="Password">
-                        <input #Password type="password" class="form-control" placeholder="Your Password *" value=""/>
+                        <input #Password type="password" formControlName='password' class="form-control" placeholder="Your Password *" value=""/>
                     </div><br>
 
                     <div class="ConfirmPassword">
-                        <input #ConfirmPassword type="password" class="form-control" placeholder="Confirm Password *" value=""/>
+                        <input #ConfirmPassword type="password" formControlName='confirmPassword' class="form-control" placeholder="Confirm Password *" value=""/>
                     </div><br>
 
                 </div>
             </div>
-            <button type="button" class="btnSubmit" (click)='guard(firstName.value,lastName.value,email.value,Password.value,ConfirmPassword.value)' routerLink='/home'>Submit</button>
+            <button type="submit" class="btnSubmit" (click)='guard(firstName.value,lastName.value,email.value,Password.value,ConfirmPassword.value)' >Submit</button>
         
     </div>
 </div>

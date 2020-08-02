@@ -7,6 +7,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { GetDataService } from 'src/app/services/get-data.service';
 import { ChatComponent } from '../chat/chat.component';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,15 +19,15 @@ export class RegistrationComponent implements OnInit {
 
   log 
 
-  constructor(private fb:FormBuilder ,private srvCanActivate:CanActivService , private stor:Store<any>,private fireStore:AngularFirestore ,private srvData:GetDataService ) { }
+  constructor(private fb:FormBuilder ,private srvCanActivate:CanActivService , private stor:Store<any>,private fireStore:AngularFirestore ,private srvData:GetDataService,private router:Router ) { }
 
 
   registrationFromG = this.fb.group({
-    firstName :['',Validators.minLength(4)],
-    lastName : ['',],
-    email:['',],
-    password:['',],
-    confirmPassword:['',]})
+    firstName :['',Validators.required],
+    lastName : ['',Validators.required],
+    email:['',[Validators.required,Validators.email]],
+    password:['',Validators.required],
+    confirmPassword:['',Validators.required]})
   
 
   ngOnInit(): void {
@@ -41,9 +42,7 @@ export class RegistrationComponent implements OnInit {
     }
 
     
-    // this.stor.dispatch(addPerson(person));
-
-    
+    console.log(this.registrationFromG.valid);
     
     if(this.registrationFromG.valid){
 
@@ -55,20 +54,26 @@ export class RegistrationComponent implements OnInit {
         email,
         password
       }
-      
-      setTimeout(()=>{
-        this.srvData.personUser.next(person)
-      },3000)
-      
+      console.log(person);
       this.srvData.addPerson(person)
+      this.srvData.personU.next(person)
+      
 
       
+      // setTimeout(()=>{
+      //   this.srvData.personUser.next(person)
+      // },3000)
+      
+      
+      
       console.log("go to can activ");
+      this.router.navigate(['/home'])
       this.srvCanActivate.logIn = true
       
     }
     else{
       console.log('kafatz');
+      console.log(this.registrationFromG.errors)
       alert("פרטים לא שלמים")
     }
     

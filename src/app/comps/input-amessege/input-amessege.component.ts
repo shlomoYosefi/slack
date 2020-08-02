@@ -15,26 +15,26 @@ export class InputAMessegeComponent implements OnInit {
   myPersonSend:number
   mypersonSendTo:number
   ngOnInit(): void {
-     this.srv.clickPerson.subscribe(val=>{this.myPerson= `הודעה ל${val.firstName} ${val.lastName}`,this.myPersonSend = val.id})
-     this.srv.personUser.subscribe(val=> this.mypersonSendTo = val.id)
+     this.srv.clickPerson.subscribe(val=>{this.myPersonSend = val.id,this.myPerson= `הודעה ל${val.firstName} ${val.lastName}`,this.myPersonSend = val.id})
+     this.srv.personU.subscribe(val=> this.mypersonSendTo = val.id)
      this.input = document.getElementById('inputSend')
 
   }
 
   send(){
 console.log(this.myPersonSend);
-console.log(this.mypersonSendTo);
 
     let date =new Date();
     let text = this.input.value
     let address
     
-    let addressee   
-    this.srv.personUser.subscribe(val=> {console.log(val.id),addressee = val.id})
+    let addressee =this.myPersonSend  
+    this.srv.personU.subscribe(val=> {console.log(val.id),address = val.id})
+    
 
     let post ={
-      address:this.mypersonSendTo,
-      addressee:this.myPersonSend,
+      address:address,
+      addressee:addressee,
       date:date,
       text:text
     }
