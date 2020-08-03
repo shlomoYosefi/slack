@@ -12,7 +12,7 @@ import { SendDataService } from 'src/app/services/send-data.service';
 export class ListNamsComponent implements OnInit {
 
   users=[]
-  myusers
+  myusers=[]
   
 
 
@@ -21,10 +21,11 @@ export class ListNamsComponent implements OnInit {
   ngOnInit(): void {
 
     this.srvData.myUsers.subscribe(val=>{
-      console.log(val[0])
       for( let i in val){
-        this.users.push(val[i])
+        if(val[i].firstName != undefined){
+        this.myusers.push(val[i])}
       }
+      this.users = this.myusers
     })
 
     // this.srv.myUsers.subscribe(val => {this.users = val, this.myusers=val})
