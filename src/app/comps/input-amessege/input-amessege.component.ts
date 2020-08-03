@@ -25,6 +25,8 @@ export class InputAMessegeComponent implements OnInit {
 console.log(this.myPersonSend);
 
     let date =new Date();
+    console.log(date);
+    
     let text = this.input.value
     let address
     
@@ -35,10 +37,12 @@ console.log(this.myPersonSend);
     let post ={
       address:address,
       addressee:addressee,
-      date:date,
+      date:new Date(),
+      // dateDay:`${date.getDate()}/${date.getMonth()}/${date.getFullYear()} `,
+      // dateTime:`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} `,
       text:text
-    }
-    console.log(post);
+    };
+    
     this.srv.sendPost(post)
     this.input.value = ''
 

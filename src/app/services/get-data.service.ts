@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GetHttpService } from './get-http.service';
 import { Observable, Subject, observable, of, BehaviorSubject } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { addPerson, persone, editPerson, IStatePerson } from './stor/events';
+import { addPerson, persone, editPerson, IStatePerson, removePerson } from './stor/events';
 import { tap, filter } from 'rxjs/operators'
 import { AngularFirestore } from '@angular/fire/firestore';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
@@ -14,34 +14,31 @@ import { Post } from './stor/postim';
 })
 export class GetDataService {
 
-  myUsers: Observable<any>
-  myAllPosts:Observable<any>
+  myUsers: Observable<any> =new Observable()
+  myAllPosts:Observable<any>=new Observable()
   myPost:Observable<any> = new Observable()
-
   clickPerson: Subject<persone> = new Subject()
-  // personUser:Subject<any> = new Subject()
   sendDataMessege: Subject<persone> = new Subject()
   arrayPost = new BehaviorSubject<Post[]>(null)
 
-  // personUser:Observable<persone> = new Observable<persone>()
   personU = new BehaviorSubject(null)
 
   
 
-  usersFromLog = []
 
 
 
-  constructor(private srvHttp: GetHttpService, private stor: Store<any>, private fireStore: AngularFirestore) {
+  constructor(private stor: Store<any>, private fireStore: AngularFirestore) {
 
 
     this.myUsers = this.fireStore.collection("person").valueChanges()
-    this.myAllPosts = this.fireStore.collection("posts").valueChanges()
+    this.myUsers.subscribe(val=> this.stor.dispatch(editPerson({personse:val})))
 
-    this.myUsers.subscribe(val=>{console.log(val)/*,this.stor.dispatch(editPerson({persons:val}))*/})
+    this.myAllPosts = this.fireStore.collection("posts").valueChanges()
+    
 
     
-    // this.myUsers.subscribe(per=>this.stor.dispatch(editPerson(per)))
+    
     
 
   }
@@ -122,6 +119,9 @@ export class GetDataService {
     
     // this.personUser.next(per)
   }
+
+
+  
 
   
 

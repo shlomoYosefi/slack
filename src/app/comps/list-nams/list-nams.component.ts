@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { GetDataService } from 'src/app/services/get-data.service';
 import { Store, select } from '@ngrx/store';
 import { selectUserNameFeature, usersFeature } from 'src/app/services/stor/selectorim';
+import { SendDataService } from 'src/app/services/send-data.service';
 
 @Component({
   selector: 'app-list-nams',
@@ -10,16 +11,23 @@ import { selectUserNameFeature, usersFeature } from 'src/app/services/stor/selec
 })
 export class ListNamsComponent implements OnInit {
 
-  users
+  users=[]
   myusers
   
 
 
-  constructor(public srv: GetDataService, private stor: Store) { }
+  constructor(public srv: GetDataService, private stor: Store , private srvData:SendDataService) { }
 
   ngOnInit(): void {
 
-    this.srv.myUsers.subscribe(val => {this.users = val, this.myusers=val})
+    this.srvData.myUsers.subscribe(val=>{
+      console.log(val[0])
+      for( let i in val){
+        this.users.push(val[i])
+      }
+    })
+
+    // this.srv.myUsers.subscribe(val => {this.users = val, this.myusers=val})
     
     
   }
@@ -32,18 +40,8 @@ export class ListNamsComponent implements OnInit {
     this.users = this.myusers.filter((val) => val.firstName.toLowerCase().startsWith(input))
   }
 
-  log(xx) {
-    //   this.stor.pipe(select(selectUserNameFeature)).subscribe(val =>{this.aa =val , console.log(val);
-    //   })      
-    
-    
-    
-    for (let i in xx[0]) {
-
-      xx.forEach(element => {
-          this.myusers.push(element[i])
-      });
-    }
+  log() {
+       
 
   }
 

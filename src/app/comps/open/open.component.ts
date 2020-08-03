@@ -13,7 +13,7 @@ export class OpenComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(){
+  login(){    
     this.router.navigate(['/logIn'])
   }
 

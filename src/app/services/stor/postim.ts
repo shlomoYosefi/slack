@@ -3,11 +3,11 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { persone } from './events';
 
 export interface Post {
-  idPerson:number
-  id: number;
+  address: string;
+  addressee:number;
+  date:Date
   text: string;
-  date: string;
-  addressee:number
+
 }
 
 
@@ -23,7 +23,7 @@ export const removePost = createAction(
 
 export const editPost = createAction(
   '[edit Person] Post',
-  props<{Post}>()
+  props<{posts:Post[]}>()
 );
 
 
@@ -52,13 +52,18 @@ const eventsReducer = createReducer(
   }),
 
 
-  on(removePost, (state ,id:{id:number}) => {
+  on(editPost, (state: IStateArrPost ,newPost:{posts:Post[]}) => {
+    console.log("fdhgfdgfdgfd");
+    let array = newPost.posts
     
-    let delPost = state.posts.filter(post=>post.id!==id.id);
-    
-    return { ...state,delPost} }),
+    return { ...state,...array}},
+    ));
 
-);
+
+  // on(removePost, (state ,id:{id:number}) => {  
+    // let delPost = state.posts.filter(post=>post.id!==id.id);
+    // return { ...state,delPost} }),
+
 
 export function reducer(state: IStateArrPost | undefined, action: Action) {
   return eventsReducer(state, action);

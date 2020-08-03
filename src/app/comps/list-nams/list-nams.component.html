@@ -2,7 +2,7 @@
 
     <div class="persons">
         <div class="input-group">
-
+<button (click)='log()'>llllllll</button>
             <input type="text" class="form-control" placeholder="חיפוש חופשי" (input)='myinp($event.target.value)'>
         </div>
 
@@ -10,8 +10,8 @@
 
 
 
-        <div class="buttons">
-            <button *ngFor='let i of users ' (click)='sendPersom(i)'>{{i.firstName}} {{i.lastName}} </button>
+        <div class="buttons" >
+            <button *ngFor='let i of users' (click)='sendPersom(i)'>{{i.firstName}} {{i.lastName}} </button>
         </div>
     </div>
 </div>

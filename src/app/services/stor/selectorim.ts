@@ -6,7 +6,7 @@ export const selectFeature :MemoizedSelector<object,IStatePerson>= createFeature
 
 export const usersFeature:MemoizedSelector<object,persone[]> = createSelector(
   selectFeature,
-  (state):persone[]=>state.personse
+  (state):persone[]=>state.personse 
 )
 
 export const selectUserNameFeature:MemoizedSelector<object,string[]> = createSelector(
