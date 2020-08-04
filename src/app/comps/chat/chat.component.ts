@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { GetDataService } from 'src/app/services/get-data.service';
 import { Subject, Observable, observable } from 'rxjs';
+import { SendDataService } from 'src/app/services/send-data.service';
 
 @Component({
   selector: 'app-chat',
@@ -10,34 +11,42 @@ import { Subject, Observable, observable } from 'rxjs';
 export class ChatComponent implements OnInit,OnDestroy {
   
   
-  myMessege 
+  myMessege =[]
+  myAllMessege=[]
   hello
   
 
-  constructor(public srv:GetDataService) { }
+  constructor(public srv:GetDataService , private srvData:SendDataService) { }
   ngOnDestroy(): void {
     this.myMessege = ['']
+
   }
   
 
   ngOnInit(): void {
-    console.log("dkdskfdsfsd");
 
-    this.srv.arrayPost.subscribe(val=>{
-      if(val == []){
-        this.myMessege=["אין הודעות"]
-      }
-      else{
-      this.myMessege=val}})   
-    // this.srv.sendDataMessege.subscribe(val=>this.myMessege=[val])
+    this.srvData.arrayPost.subscribe(val=>{this.myMessege=val})
     
-    this.srv.personU.subscribe(val=> {
+    this.srvData.personU.subscribe(val=> {
       if(val !=null){
       this.hello = `שלום ${val.firstName} ${val.lastName} `}})
   }
 
+
+
+
   allMesseg(){
-    // this.srv.getAllPosts().subscribe(data=>this.myMessege=data)
+    this.srvData.myAllPosts.subscribe(val=>{
+      this.myAllMessege=[]
+      for( let i in val){
+        console.log(val[i].date);
+        if(val[i] !=''){
+        this.myAllMessege.push(val[i])}
+        this.myMessege = this.myAllMessege
+        
+      }
+      
+    })
   }
 
 

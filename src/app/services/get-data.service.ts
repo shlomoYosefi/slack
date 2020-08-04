@@ -6,7 +6,7 @@ import { addPerson, persone, editPerson, IStatePerson, removePerson } from './st
 import { tap, filter } from 'rxjs/operators'
 import { AngularFirestore } from '@angular/fire/firestore';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Post } from './stor/postim';
+import { Post, editPost } from './stor/postim';
 
 
 @Injectable({
@@ -16,10 +16,6 @@ export class GetDataService {
 
   myUsers: Observable<any> =new Observable()
   myAllPosts:Observable<any>=new Observable()
-  myPost:Observable<any> = new Observable()
-  clickPerson: Subject<persone> = new Subject()
-  sendDataMessege: Subject<persone> = new Subject()
-  arrayPost = new BehaviorSubject<Post[]>(null)
 
   personU = new BehaviorSubject(null)
 
@@ -35,77 +31,19 @@ export class GetDataService {
     this.myUsers.subscribe(val=> this.stor.dispatch(editPerson({personse:val})))
 
     this.myAllPosts = this.fireStore.collection("posts").valueChanges()
-    
+    this.myAllPosts.subscribe(val=> {console.log(val),this.stor.dispatch(editPost({posts:val}))})
 
     
     
     
 
-  }
-
-
-
-  getFilterDataMessege(name) {
-    
-    let send=[] 
-    let myUser
-    this.personU.subscribe(val=>{myUser = val})
-    
-    
-    // this.personUser.subscribe(vv=>{
-    // setTimeout(()=>{
-    //   console.log("klklklkl");
-    //   console.log(name);
-    //   console.log(myUser);
-    // },3000)})
-    
-    
-    this.clickPerson.next(name)
-    
-    this.myAllPosts.subscribe(val=>{
-
-      let itsPost=[]
-
-      for (let i of val){
-        // console.log(myUser.id),
-        // console.log(name.id) 
-        // console.log(i.address);
-        // console.log(i.addressee);
-        
-               
-        if((i.address== name.id && i.addressee == myUser.id ) || (i.address== myUser.id && i.addressee ==name.id  )){
-          itsPost.push(i)
-        };
-        
-      }
-      this.arrayPost.next(itsPost)
-      this.myPost= of(itsPost)
-    })
-    
-    
-    // this.srvHttp.getHttpPersons(`https://5f14541b2710570016b37e30.mockapi.io/post/${name.id}`).subscribe(val => {
-    //   this.sendDataMessege.next(val)
-    // })
-
-  }
-
-
-  getAllPosts() {
-    return this.myAllPosts
   }
 
 
 
 
   addPerson(person) {
-    // console.log((person));
-    console.log(person);
-    
     this.fireStore.collection("person").add(person)
-    
-    // this.stor.dispatch(editPerson(this.myUsers));
-    // this.stor.dispatch(addPerson(person));
-
   }
 
 
@@ -114,11 +52,7 @@ export class GetDataService {
   }
 
 
-  editPersonUser(per){
-    console.log(per);
-    
-    // this.personUser.next(per)
-  }
+  
 
 
   

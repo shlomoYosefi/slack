@@ -67,6 +67,12 @@ button{
     margin-right: 200px;
 } */
 
+#spanAddress{
+    direction: rtl;
+    text-decoration: underline ;
+    color: blue;
+}
+
 
 
 

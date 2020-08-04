@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit ,OnDestroy{
   ngOnDestroy(): void {
     this.gurd.logIn = false
     this.srv.personU =new BehaviorSubject(null)
-    this.srv.myPost = new Observable()
   }
 
   ngOnInit(): void {

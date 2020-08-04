@@ -53,7 +53,6 @@ const eventsReducer = createReducer(
   
   stateArrayPerson,
   on(addPerson, (state: IStatePerson, newPerson: persone):IStatePerson => {
-    console.log("add");
 
     return {...state,personse:[...state.personse,newPerson]}
   }),
@@ -61,7 +60,6 @@ const eventsReducer = createReducer(
 
 
   on(removePerson, (state ,id:{id:number}) => {
-    console.log("remov");
 
     let delPerson = state.personse.filter(event=>event.id!==id.id);
     return { ...state,delPerson} }),
@@ -71,7 +69,6 @@ const eventsReducer = createReducer(
 
 
 on(editPerson, (state: IStatePerson ,newPersons:{personse:persone[]}) => {
-  console.log("fdhgfdgfdgfd");
   let array = newPersons.personse
   
   return { ...state,...array}},
@@ -84,8 +81,6 @@ on(editPerson, (state: IStatePerson ,newPersons:{personse:persone[]}) => {
 
 
 export function reducer(state: IStatePerson | undefined, action: Action) {
-  console.log(state);
-  console.log(action);
 
   return eventsReducer(state, action);
 }

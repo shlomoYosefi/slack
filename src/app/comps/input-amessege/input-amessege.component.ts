@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetDataService } from 'src/app/services/get-data.service';
+import { SendDataService } from 'src/app/services/send-data.service';
+import { persone } from 'src/app/services/stor/events';
 
 @Component({
   selector: 'app-input-amessege',
@@ -9,35 +11,45 @@ import { GetDataService } from 'src/app/services/get-data.service';
 export class InputAMessegeComponent implements OnInit {
 
   input
-  constructor(private srv:GetDataService) { }
+  constructor(private srv:GetDataService, private srvData:SendDataService) { }
 
   myPerson:string = "הודעה"
-  myPersonSend:number
+  myPersonSend:persone
   mypersonSendTo:number
   ngOnInit(): void {
-     this.srv.clickPerson.subscribe(val=>{this.myPersonSend = val.id,this.myPerson= `הודעה ל${val.firstName} ${val.lastName}`,this.myPersonSend = val.id})
-     this.srv.personU.subscribe(val=> this.mypersonSendTo = val.id)
+     this.srvData.clickPerson.subscribe(val=>{this.myPersonSend = val,this.myPerson= `הודעה ל${val.firstName} ${val.lastName}`})
+    //  this.srv.personU.subscribe(val=> this.mypersonSendTo = val.id)
      this.input = document.getElementById('inputSend')
 
   }
 
   send(){
-console.log(this.myPersonSend);
+// console.log(this.myPersonSend);
 
     let date =new Date();
-    console.log(date);
+//     console.log(date);
     
     let text = this.input.value
     let address
+    let addressName
+    let addressee =this.myPersonSend.id  
+    let addresseeName= `${this.myPersonSend.firstName} ${this.myPersonSend.lastName}`
     
-    let addressee =this.myPersonSend  
-    this.srv.personU.subscribe(val=> {console.log(val.id),address = val.id})
+    
+    
+    this.srv.personU.subscribe(val=> {
+      address = val.id
+      addressName = `${val.firstName} ${val.lastName}`
+    
+    })
     
 
     let post ={
       address:address,
+      addressName:addressName,
       addressee:addressee,
-      date:new Date(),
+      addresseeName:addresseeName,
+      date:date.toLocaleDateString(),
       // dateDay:`${date.getDate()}/${date.getMonth()}/${date.getFullYear()} `,
       // dateTime:`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} `,
       text:text

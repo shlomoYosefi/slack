@@ -21,6 +21,7 @@ import { RegistrationComponent } from './comps/registration/registration.compone
 
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { reducerPost } from './services/stor/postim';
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import { environment } from 'src/environments/environment';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
 
-    StoreModule.forRoot( {users:reducer}, {
+    StoreModule.forRoot( {users:reducer, posts:reducerPost}, {
 
       runtimeChecks: {
         strictStateImmutability: true,

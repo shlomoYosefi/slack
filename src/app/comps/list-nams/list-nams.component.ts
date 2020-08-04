@@ -16,7 +16,7 @@ export class ListNamsComponent implements OnInit {
   
 
 
-  constructor(public srv: GetDataService, private stor: Store , private srvData:SendDataService) { }
+  constructor( private stor: Store , private srvData:SendDataService) { }
 
   ngOnInit(): void {
 
@@ -34,7 +34,7 @@ export class ListNamsComponent implements OnInit {
   }
 
   sendPersom(person) {
-    this.srv.getFilterDataMessege(person)
+    this.srvData.getFilterDataMessege(person)
   }
 
   myinp(input) {
