@@ -27,6 +27,9 @@ export class InputAMessegeComponent implements OnInit {
 // console.log(this.myPersonSend);
 
     let date =new Date();
+   
+
+    
 //     console.log(date);
     
     let text = this.input.value
@@ -49,7 +52,9 @@ export class InputAMessegeComponent implements OnInit {
       addressName:addressName,
       addressee:addressee,
       addresseeName:addresseeName,
-      date:date.toLocaleDateString(),
+      dateTime:date.toLocaleTimeString(),
+      dateDay:date.toLocaleDateString(),
+
       // dateDay:`${date.getDate()}/${date.getMonth()}/${date.getFullYear()} `,
       // dateTime:`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} `,
       text:text

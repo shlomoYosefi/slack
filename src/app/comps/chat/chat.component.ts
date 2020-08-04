@@ -25,7 +25,7 @@ export class ChatComponent implements OnInit,OnDestroy {
 
   ngOnInit(): void {
 
-    this.srvData.arrayPost.subscribe(val=>{this.myMessege=val})
+    this.srvData.arrayPost.subscribe(val=>{console.log(val),this.myMessege=val})
     
     this.srvData.personU.subscribe(val=> {
       if(val !=null){
