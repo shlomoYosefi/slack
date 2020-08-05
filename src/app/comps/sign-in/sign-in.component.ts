@@ -9,6 +9,7 @@ import { of } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { usersFeature, selectFeature } from 'src/app/services/stor/selectorim';
+import { SendDataService } from 'src/app/services/send-data.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class SignInComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private srvData: GetDataService, private srvCanActivate: CanActivService ,private router:Router,private store:Store<IStatePerson>) { }
+  constructor(private fb: FormBuilder, private srvData: SendDataService, private srvCanActivate: CanActivService ,private router:Router,private store:Store<IStatePerson> ,private srv:GetDataService) { }
 
 
   signInFromG = this.fb.group({
@@ -50,17 +51,13 @@ export class SignInComponent implements OnInit {
 
   guard(email, password, rememberMe) {
 
-    this.srvData.myUsers.subscribe(val => {
+    this.srv.myUsers.subscribe(val => {
       console.log(val);
       
       for (let i of val) {
-        if (i.email == email && i.password == password) {
-          
-          console.log(true);
-
+        if (i.email == email && i.password == password) {       
           this.srvData.personU.next(i)
-
-          // this.srvData.personUser = of(i)
+          this.srvData.personU.subscribe(vv=>console.log(vv))
           this.router.navigate(['/home'])
           this.srvCanActivate.logIn = true
           return

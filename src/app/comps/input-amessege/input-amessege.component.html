@@ -1,8 +1,7 @@
-
     <div class="input-group">
         <div class="input-group-prepend" style="display: flex;">
           <button (click)='send()'>שלח</button>
-        <textarea  (keyup.enter)='send()' dir="rtl" id="inputSend" class="form-control" aria-label="With textarea" [placeholder] = 'myPerson'></textarea>
+        <textarea #inp (input)='return()' (keyup.enter)='send()' dir="rtl" id="inputSend" class="form-control" aria-label="With textarea" [placeholder] = 'myPerson'></textarea>
       
       </div>
 

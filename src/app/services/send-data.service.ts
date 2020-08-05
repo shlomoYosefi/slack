@@ -11,6 +11,7 @@ import { GetDataService } from './get-data.service';
 })
 export class SendDataService {
 
+  counter:number =0
 
   myUsers: Observable<any>
   myAllPosts:Observable<any>
@@ -28,27 +29,32 @@ export class SendDataService {
 
     this.myUsers =this.stor.pipe(select(selectFeature))
     this.myAllPosts = this.stor.pipe(select(selectFeaturePost))
-    this.personU = this.srvGet.personU
+    // this.personU = this.srvGet.personU
+    this.counter = this.srvGet.counter
   }
 
 
 
   getFilterDataMessege(name) {
+    
     let myUser
-    let itsPost=[]
+    // let itsPost=[]
 
     this.personU.subscribe(val=>{myUser = val})
     
     this.clickPerson.next(name)
 
     this.myAllPosts.subscribe(val=>{
-console.log(val)
+      let itsPost=[]
       for (let i in val){
         
         if((val[i].address== name.id && val[i].addressee == myUser.id ) || (val[i].address== myUser.id && val[i].addressee ==name.id)){
           itsPost.push(val[i])
         };
       }
+      itsPost.sort(function(a,b){
+        return a.id - b.id
+      })
       console.log(itsPost);
       
       this.arrayPost.next(itsPost)

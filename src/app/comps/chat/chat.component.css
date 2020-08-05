@@ -74,8 +74,9 @@ button{
 }
 
 #messeg{
-    text-align:right;
-    margin-right: 4%;
+    /* text-align:right; */
+    margin-right: 30%;
+    margin-left: 30%;
 }
 
 

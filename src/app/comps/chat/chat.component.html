@@ -14,7 +14,17 @@
 
 
   <div id="messeg" *ngFor ='let i of myMessege' >
-    <span id="spanAddress" >{{i.addressName}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: cornflowerblue;">{{i.dateTime}}</span><br>
-    <span>{{i.text}}</span><hr><br>
+    <div class="nessU" *ngIf='i.address == myUser.id' style=" text-align: right;">
+      <span id="spanAddress" >{{i.addressName}}</span><br>
+      <span style="color: cornflowerblue;">{{i.dateDay}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: cornflowerblue;">{{i.dateTime}}</span><br><br>
+      <span style="color: brown;">{{i.text}}</span><hr><br>
+    </div>
+
+    <div class="nessClick" *ngIf='i.address != myUser.id' style="text-align: left ">
+      <span id="spanAddress" >{{i.addressName}}</span><br>
+      <span style="color: cornflowerblue;">{{i.dateDay}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: cornflowerblue;">{{i.dateTime}}</span><br><br>
+      <span style="color: darkgreen;">{{i.text}}</span><hr><br>
+    </div>
+    
   </div>
 </div>

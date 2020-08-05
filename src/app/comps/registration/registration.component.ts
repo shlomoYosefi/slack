@@ -8,6 +8,7 @@ import { GetDataService } from 'src/app/services/get-data.service';
 import { ChatComponent } from '../chat/chat.component';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
+import { SendDataService } from 'src/app/services/send-data.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class RegistrationComponent implements OnInit {
 
   log 
 
-  constructor(private fb:FormBuilder ,private srvCanActivate:CanActivService , private stor:Store<any>,private fireStore:AngularFirestore ,private srvData:GetDataService,private router:Router ) { }
+  constructor(private fb:FormBuilder ,private srvCanActivate:CanActivService , private stor:Store<any>,private fireStore:AngularFirestore ,private srvData:SendDataService,private router:Router ,private srvGet:GetDataService) { }
 
 
   registrationFromG = this.fb.group({
@@ -55,7 +56,7 @@ export class RegistrationComponent implements OnInit {
         password
       }
       console.log(person);
-      this.srvData.addPerson(person)
+      this.srvGet.addPerson(person)
       this.srvData.personU.next(person)
       
 

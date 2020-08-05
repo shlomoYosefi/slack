@@ -40,7 +40,7 @@ export class InputAMessegeComponent implements OnInit {
     
     
     
-    this.srv.personU.subscribe(val=> {
+    this.srvData.personU.subscribe(val=> {
       address = val.id
       addressName = `${val.firstName} ${val.lastName}`
     
@@ -48,22 +48,31 @@ export class InputAMessegeComponent implements OnInit {
     
 
     let post ={
+      id:++this.srvData.counter,
       address:address,
       addressName:addressName,
       addressee:addressee,
       addresseeName:addresseeName,
+      date:new Date(),
       dateTime:date.toLocaleTimeString(),
       dateDay:date.toLocaleDateString(),
-
-      // dateDay:`${date.getDate()}/${date.getMonth()}/${date.getFullYear()} `,
-      // dateTime:`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} `,
       text:text
     };
     
     this.srv.sendPost(post)
     this.input.value = ''
+    
 
 
+  }
+
+
+  return(){
+    if (this.myPersonSend ==undefined){
+      this.input.value = ''
+      alert("הכנס נמען שאתה רוצה לשלוח לו")
+    }
+    
   }
 
   

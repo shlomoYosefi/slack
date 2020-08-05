@@ -7,6 +7,7 @@ import { tap, filter } from 'rxjs/operators'
 import { AngularFirestore } from '@angular/fire/firestore';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Post, editPost } from './stor/postim';
+import { SendDataService } from './send-data.service';
 
 
 @Injectable({
@@ -14,28 +15,31 @@ import { Post, editPost } from './stor/postim';
 })
 export class GetDataService {
 
+  counter:number = 0
+
   myUsers: Observable<any> =new Observable()
   myAllPosts:Observable<any>=new Observable()
 
-  personU = new BehaviorSubject(null)
+  // personU = new BehaviorSubject(null)
 
   
 
 
 
 
-  constructor(private stor: Store<any>, private fireStore: AngularFirestore) {
+  constructor(private stor: Store<any>, private fireStore: AngularFirestore ) {
 
 
     this.myUsers = this.fireStore.collection("person").valueChanges()
+
     this.myUsers.subscribe(val=> this.stor.dispatch(editPerson({personse:val})))
 
     this.myAllPosts = this.fireStore.collection("posts").valueChanges()
-    this.myAllPosts.subscribe(val=> {console.log(val),this.stor.dispatch(editPost({posts:val}))})
 
-    
-    
-    
+    this.myAllPosts.subscribe(val=> {
+
+      this.counter = val.length
+      this.stor.dispatch(editPost({posts:val}))})
 
   }
 
@@ -47,7 +51,7 @@ export class GetDataService {
   }
 
 
-  sendPost(post) {
+  sendPost(post) {   
     this.fireStore.collection("posts").add(post)
   }
 

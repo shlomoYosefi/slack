@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { GetDataService } from 'src/app/services/get-data.service';
 import { Subject, Observable, observable } from 'rxjs';
 import { SendDataService } from 'src/app/services/send-data.service';
+import { persone } from 'src/app/services/stor/events';
 
 @Component({
   selector: 'app-chat',
@@ -13,17 +14,18 @@ export class ChatComponent implements OnInit,OnDestroy {
   
   myMessege =[]
   myAllMessege=[]
-  hello
+  hello:string
+  myUser:persone
+  userClick:persone
+
+  constructor( private srvData:SendDataService) { }
   
-
-  constructor(public srv:GetDataService , private srvData:SendDataService) { }
-  ngOnDestroy(): void {
-    this.myMessege = ['']
-
-  }
   
 
   ngOnInit(): void {
+
+    this.srvData.personU.subscribe(val=>this.myUser=val)
+    this.srvData.clickPerson.subscribe(val=>this.userClick=val)
 
     this.srvData.arrayPost.subscribe(val=>{console.log(val),this.myMessege=val})
     
@@ -37,16 +39,28 @@ export class ChatComponent implements OnInit,OnDestroy {
 
   allMesseg(){
     this.srvData.myAllPosts.subscribe(val=>{
+      console.log(val);
       this.myAllMessege=[]
       for( let i in val){
-        console.log(val[i].date);
+        
         if(val[i] !=''){
         this.myAllMessege.push(val[i])}
-        this.myMessege = this.myAllMessege
-        
+        this.myMessege = this.myAllMessege  
       }
+      this.myAllMessege.sort(function(a,b){
+        return a.id - b.id
+      })
+      
       
     })
+    
+    
+    
+
+  }
+  ngOnDestroy(): void {
+    this.myMessege = ['']
+
   }
 
 
