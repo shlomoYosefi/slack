@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { GetHttpService } from './get-http.service';
 import { Observable, Subject, observable, of, BehaviorSubject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { addPerson, persone, editPerson, IStatePerson, removePerson } from './stor/events';

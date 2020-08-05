@@ -45,16 +45,29 @@ export class SendDataService {
     this.clickPerson.next(name)
 
     this.myAllPosts.subscribe(val=>{
+      let arr =[]
       let itsPost=[]
       for (let i in val){
         
         if((val[i].address== name.id && val[i].addressee == myUser.id ) || (val[i].address== myUser.id && val[i].addressee ==name.id)){
-          itsPost.push(val[i])
+          arr.push(val[i])
         };
       }
-      itsPost.sort(function(a,b){
-        return a.id - b.id
-      })
+      console.log(arr);
+      
+      for (let i =0;i<arr.length;i++){
+        for (let j of arr){
+          console.log(j);
+          
+          if(j.id == i+1){
+            console.log("lllllll");
+            
+            itsPost.push(j)
+          }
+        }
+        
+        
+      }
       console.log(itsPost);
       
       this.arrayPost.next(itsPost)

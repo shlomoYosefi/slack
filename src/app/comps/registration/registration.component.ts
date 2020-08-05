@@ -47,7 +47,7 @@ export class RegistrationComponent implements OnInit {
     
     if(this.registrationFromG.valid){
 
-      let id = Math.floor(Math.random() * 10000);
+      let id = Math.floor(Math.random() * 10000000);
       let person ={
         id,
         firstName,

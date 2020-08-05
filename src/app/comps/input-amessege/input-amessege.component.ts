@@ -54,7 +54,7 @@ export class InputAMessegeComponent implements OnInit {
       addressee:addressee,
       addresseeName:addresseeName,
       date:new Date(),
-      dateTime:date.toLocaleTimeString(),
+      dateTime:`${date.getHours()} : ${date.getMinutes()}`,
       dateDay:date.toLocaleDateString(),
       text:text
     };
