@@ -53,14 +53,11 @@ export class SendDataService {
           arr.push(val[i])
         };
       }
-      console.log(arr);
       
       for (let i =0;i<arr.length;i++){
         for (let j of arr){
-          console.log(j);
           
           if(j.id == i+1){
-            console.log("lllllll");
             
             itsPost.push(j)
           }
@@ -68,7 +65,6 @@ export class SendDataService {
         
         
       }
-      console.log(itsPost);
       
       this.arrayPost.next(itsPost)
       // this.myPost= of(itsPost)

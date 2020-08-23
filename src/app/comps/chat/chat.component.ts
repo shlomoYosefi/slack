@@ -27,7 +27,7 @@ export class ChatComponent implements OnInit,OnDestroy {
     this.srvData.personU.subscribe(val=>this.myUser=val)
     this.srvData.clickPerson.subscribe(val=>this.userClick=val)
 
-    this.srvData.arrayPost.subscribe(val=>{console.log(val),this.myMessege=val})
+    this.srvData.arrayPost.subscribe(val=>{this.myMessege=val})
     
     this.srvData.personU.subscribe(val=> {
       if(val !=null){
@@ -39,20 +39,28 @@ export class ChatComponent implements OnInit,OnDestroy {
 
   allMesseg(){
     this.srvData.myAllPosts.subscribe(val=>{
-      console.log(val);
+      // console.log(val);
       this.myAllMessege=[]
       for( let i in val){
         
         if(val[i] !=''){
-        this.myAllMessege.push(val[i])}
-        this.myMessege = this.myAllMessege  
+          
+        this.myAllMessege.push(val[i])
       }
+        
+      }
+      this.myMessege = this.myAllMessege  
+      // console.log(this.myAllMessege);
+
       this.myAllMessege.sort(function(a,b){
-        return a.id - b.id
+        console.log(a.date.seconds,b.date.seconds);
+        
+        return a.date.seconds - b.date.seconds
       })
       
       
     })
+    // console.log(this.myAllMessege);
     
     
     

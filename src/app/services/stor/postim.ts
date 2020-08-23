@@ -53,7 +53,6 @@ const eventsReducer = createReducer(
 
 
   on(editPost, (state: IStateArrPost ,newPost:{posts:Post[]}) => {
-    console.log("postedit");
     let array = newPost.posts
     
     return { ...state,...array}},
@@ -65,8 +64,6 @@ const eventsReducer = createReducer(
     // return { ...state,delPost} }),
 
 
-export function reducerPost(state: IStateArrPost | undefined, action: Action) {
-  console.log(action);
-  
+export function reducerPost(state: IStateArrPost | undefined, action: Action) {  
   return eventsReducer(state, action);
 }

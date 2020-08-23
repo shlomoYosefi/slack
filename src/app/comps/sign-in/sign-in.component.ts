@@ -52,7 +52,6 @@ export class SignInComponent implements OnInit {
   guard(email, password, rememberMe) {
 
     this.srv.myUsers.subscribe(val => {
-      console.log(val);
       
       for (let i of val) {
         if (i.email == email && i.password == password) {       
